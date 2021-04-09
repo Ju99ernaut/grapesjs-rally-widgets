@@ -1,0 +1,26 @@
+/* Class names prefixes */
+$prefix: 'gjs-' !default;
+
+.#{$prefix}import-label {
+    color: #a97d44;
+    background-color: rgba(0, 0, 0, 0.2);
+    font-size: 12px;
+    padding: 5px 10px 3px;
+    text-align: right;
+}
+
+.#{$prefix}copy-btn {
+    margin-top: 5px;
+    background-color: #4491a1;
+    color: white;
+    cursor: pointer;
+    padding: 10px 15px;
+    display: block;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+}
+
+.#{$prefix}copy-btn svg {
+    height: 20px;
+    fill: currentColor;
+}

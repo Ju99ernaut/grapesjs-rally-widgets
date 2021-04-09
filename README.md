@@ -132,6 +132,12 @@ Install dependencies
 $ npm i
 ```
 
+Build sass
+
+```sh
+$ npm run build:css
+```
+
 Start the dev server
 
 ```sh

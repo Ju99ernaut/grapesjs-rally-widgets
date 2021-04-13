@@ -2,7 +2,7 @@
 
 (WIP) Library of components that rely on the [rally.io](https://rally.io) API
 
-[DEMO](##)
+[DEMO](https://blocomposer.com/editor)
 
 ### HTML
 ```html

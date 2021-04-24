@@ -10,6 +10,24 @@ export default (editor, opts = {}) => {
     content: { type: 'price-ticker' },
   });
 
+  bm.add('rally-deeplink-predefined', {
+    category: 'Rally',
+    label: 'Product Button',
+    attributes: {
+      class: 'fa fa-shopping-cart'
+    },
+    content: { type: 'rally-deeplink-predefined' },
+  });
+
+  bm.add('rally-buy-coin', {
+    category: 'Rally',
+    label: 'Buy Coin',
+    attributes: {
+      class: 'fa fa-credit-card'
+    },
+    content: { type: 'rally-buy-coin' },
+  });
+
   bm.add('rally-deeplink', {
     category: 'Rally',
     label: 'Deeplink',

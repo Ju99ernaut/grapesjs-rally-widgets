@@ -1,5 +1,6 @@
 export default (editor, opts = {}) => {
   const domc = editor.DomComponents;
+  const pfx = editor.getConfig('stylePrefix');
 
   const getCoinsOptions = coins => {
     return coins.map(coin => {
@@ -20,6 +21,31 @@ export default (editor, opts = {}) => {
     type: 'select',
     name: 'coin',
     options: getCoinsOptions(opts.coinsList),
+    changeProp: true,
+  }
+
+  const currencyTrait = {
+    type: 'select',
+    name: 'currencyType',
+    label: 'Currency',
+    options: [
+      { value: 'COIN', name: 'COIN' },
+      { value: 'USD', name: 'USD' }
+    ],
+    changeProp: true,
+  }
+
+  const amountTrait = {
+    type: 'number',
+    name: 'amount',
+    placeholder: '10',
+    min: 0,
+    changeProp: true,
+  }
+
+  const noteTrait = {
+    name: 'note',
+    placeholder: 'note...',
     changeProp: true,
   }
 
@@ -268,8 +294,8 @@ export default (editor, opts = {}) => {
               <a target="_blank" href="#">Link</a>
             </div>
             <div>
-              <button type="button" class="prev">Prev</button>
-              <button type="button" class="next">Next</button>
+              <button data-${pfx}type="button-basic" type="button" class="prev">Prev</button>
+              <button data-${pfx}type="button-basic" type="button" class="next">Next</button>
             </div>
             <div><span class="step"></span><span class="step"></span><span class="step"></span></div>
           </form>
@@ -316,6 +342,102 @@ export default (editor, opts = {}) => {
               background-color: #4caf50;
             }
           </style>`
+      },
+    },
+  });
+
+  domc.addType('rally-deeplink-predefined', {
+    extend: 'widget',
+    model: {
+      defaults: {
+        // Default props
+        icon: '<i class="fa fa-shopping-cart"></i>',
+        traits: [
+          idTrait,
+          titleTrait,
+          coinTrait,
+          currencyTrait,
+          amountTrait,
+          noteTrait
+        ],
+        currencyType: 'COIN',
+        amount: 10,
+        note: 'service/product description',
+        'script-props': ['coin', 'currencyType', 'amount', 'note'],
+        script({ coin, currencyType, amount, note }) {
+          this.querySelector('button').addEventListener('click', function () {
+            window.open(`https://www.rally.io/creator/${coin}/?inputType=${currencyType}&amount=${amount}&note=${note}`, '_blank');
+          });
+        },
+        components: `<button data-${pfx}type="button-basic" class="btn-rly">Buy Product</button>
+        <style>
+          .btn-rly {
+            cursor: pointer;
+            padding: 13px 18px;
+            background-color: #424242;
+            font-family: inherit;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            border: 1px solid #e9ebeb;
+            border-bottom-color: #e1e3e3;
+            border-radius: 4px;
+            background-color: #fff;
+            color: rgba(14, 30, 37, .87);
+            box-shadow: 0 2px 4px 0 rgba(14, 30, 37, .12);
+            transition: all .2s ease;
+            transition-property: background-color, color, border, box-shadow;
+            outline: 0;
+            font-weight: 500;
+            background: #f40;
+            color: #fff;
+            border-color: transparent;
+          }
+        </style>`
+      }
+    },
+  });
+
+  domc.addType('rally-buy-coin', {
+    extend: 'widget',
+    model: {
+      defaults: {
+        // Default props
+        icon: '<i class="fa fa-credit-card"></i>',
+        script({ coin }) {
+          this.querySelector('button').addEventListener('click', function () {
+            window.open(`https://www.rally.io/creator/${coin}/`, '_blank');
+          });
+        },
+        components: `<button data-${pfx}type="button-basic" class="btn-rly">Buy Coin</button>
+        <style>
+          .btn-rly {
+            cursor: pointer;
+            padding: 13px 18px;
+            background-color: #424242;
+            font-family: inherit;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            border: 1px solid #e9ebeb;
+            border-bottom-color: #e1e3e3;
+            border-radius: 4px;
+            background-color: #fff;
+            color: rgba(14, 30, 37, .87);
+            box-shadow: 0 2px 4px 0 rgba(14, 30, 37, .12);
+            transition: all .2s ease;
+            transition-property: background-color, color, border, box-shadow;
+            outline: 0;
+            font-weight: 500;
+            background: #f40;
+            color: #fff;
+            border-color: transparent;
+          }
+        </style>`
       },
     },
   });

@@ -1,6 +1,6 @@
 {
     "name": "grapesjs-rally-widgets",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Grapesjs Rally Widgets",
     "main": "dist/grapesjs-rally-widgets.min.js",
     "repository": {

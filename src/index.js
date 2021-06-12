@@ -16,6 +16,21 @@ export default (editor, opts = {}) => {
       // Options for extending widget model
       widgetComponent: {},
 
+      // Options for extending price ticker block
+      tickerBlock: {},
+
+      // Options for extending deeplink block
+      deeplinkBlock: {},
+
+      // Options for extending deeplink alternative block
+      deeplink2Block: {},
+
+      // Options for extending buy block
+      buyBlock: {},
+
+      // Options for extending profile block
+      profileBlock: {},
+
       // Url for rally api
       rallyUrl: 'https://api.rally.io/v1/',
     }, ...opts

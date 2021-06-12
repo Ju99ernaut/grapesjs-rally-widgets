@@ -1,3 +1,5 @@
+import { cmdWidget } from './consts';
+
 export default (editor, opts = {}) => {
     const cm = editor.Commands;
     const $ = editor.$;
@@ -66,7 +68,7 @@ export default (editor, opts = {}) => {
         return `${html}<style>\n${css}</style><script>\n${js}</script>`;
     }
 
-    cm.add('widget-code', {
+    cm.add(cmdWidget, {
         run(editor) {
             if (!viewerEditor) {
                 const txtarea = document.createElement('textarea');
